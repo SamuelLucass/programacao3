@@ -1,4 +1,4 @@
-'''
+
 def fatorial_iterativo(n):
     fat = 1
     if n < 0:
@@ -11,7 +11,7 @@ def fatorial_iterativo(n):
         return fat
     
 print (fatorial_iterativo(5)) #resultado: 120
-'''
+
 def fatorial_recursivo(n):  
     fat = 1 
     if n < 0:

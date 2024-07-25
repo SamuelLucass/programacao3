@@ -1,4 +1,4 @@
-'''
+
 def buscaSequencial(dados,buscado):
     achou = 0
     i = 0 
@@ -26,7 +26,7 @@ if (achou == -1):
     print('valor não encontrado.')
 else: 
     print('valor encontrado na posição {}'.format(achou))
-'''      
+     
 
 def buscaBinaria (inicio,fim,dados,buscado):
     while(inicio <= fim):
