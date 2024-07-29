@@ -1,4 +1,7 @@
 '''
+Samuel de Lucas Silva
+RU: 3878493
+
 ### Enunciado: Com a finalidade de melhorar o atendimento e priorizar os casos mais urgentes, a direção de um hospital criou um sistema de triagem em que um profissional da saúde classifica a ordem de atendimento com base numa avaliação prévia do paciente, entregando-lhe um cartão numerado verde (V) ou amarelo (A), que define o menor ou maior grau de urgência da ocorrência, respectivamente. Para informatizar esse processo, a direção do hospital contratou você para desenvolver uma fila de chamada seguindo as seguintes regras:
 
 - [x]  Pacientes com cartão numerado amarelo (A) são chamados antes dos pacientes com cartão numerado verde (V)
@@ -91,9 +94,9 @@ class ListaEncadeadaSimples:
 
 
     def inserir(self):
-        cor = input('Digite a cor do cartão (A ou V): ').strip().upper()
+        cor = input('Digite a cor do cartão (A ou V): ').strip().upper() #Faz a tratativa dos dados enviados pelo usuário
         while cor not in ['A', 'V']:
-            cor = input('Cor inválida! Digite a cor do cartão (A ou V): ').strip().upper()
+            cor = input('Cor inválida! Digite a cor do cartão (A ou V): ').strip().upper() #Faz a tratativa dos dados enviados pelo usuário
         
         if cor == 'A':
             numero = int(input('Digite o número do cartão (mínimo 201): ').strip())
@@ -119,12 +122,35 @@ class ListaEncadeadaSimples:
     def imprimirListaEspera(self):
         if self.head is None:
             print("A lista está vazia.")
-        else:
-            nodo = self.head
-            while nodo is not None:
-                print(f'Cartão número: {nodo.numero}, Cor: {nodo.cor}')
-                nodo = nodo.proximo
+            return
+        
+        amarelos = []
+        verdes = []
 
+        nodo = self.head
+        while nodo is not None:
+            if nodo.cor == 'A':
+                amarelos.append((nodo.numero, nodo.cor))
+            else:
+                verdes.append((nodo.numero, nodo.cor))
+            nodo = nodo.proximo
+
+        amarelos.sort(key=lambda x: x[0])
+        verdes.sort(key=lambda x: x[0])
+
+        if amarelos:
+            print("Cartões Amarelos:")
+            for num, cor in amarelos:
+                print(f'Cartão número: {num}, Cor: {cor}')
+        else:
+            print("Nenhum cartão amarelo na fila.")
+            
+        if verdes:
+            print("Cartões Verdes:")
+            for num, cor in verdes:
+                print(f'Cartão número: {num}, Cor: {cor}')
+        else:
+            print("Nenhum cartão verde na fila.")
 #F. Deve-se implementar a função atenderPaciente() em que: [EXIGÊNCIA DE CÓDIGO 6 de 7];
 #   a. Deve-se remover o primeiro paciente da fila e imprimir uma mensagem chamando o paciente para atendimento informando o número do seu cartão.
 
@@ -149,7 +175,7 @@ def programa():
     #dentro da função principal.
 
     while True:
-        print('1 - Adicionar paciente à fila')
+        print('1 - Adicionar paciente a fila')
         print('2 - Mostrar pacientes na fila')
         print('3 - Chamar paciente')
         print('4 - Sair')
@@ -171,8 +197,6 @@ def programa():
             break
         else:
             print("Selecione outra opção!\n")
-
-
 # construtor em python que desencadeia toda a execução do programa
 if __name__ == "__main__":
     programa()
